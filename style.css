@@ -7,6 +7,10 @@
     --white: #ffffff;
     --green-dark: navy;
   }
+a:hover {
+  background-color: yellow;
+  font-size: 18px;
+}
   
   * {
     box-sizing: border-box;
