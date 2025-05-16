@@ -1,0 +1,81 @@
+:root {
+    --blue-a: #29B6F6;
+    --blue-b: #72CAF2;
+    --blue-c: #29B1F0;
+    --blue-d: #355D70;
+    --blue-e: #208BBD;
+    --white: #ffffff;
+    --green-dark: navy;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: var(--white);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .card {
+    background: #f5f5f5;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image {
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    position: relative;
+  }
+  
+  .image.gradient {
+    background: linear-gradient(to bottom, #e0f2e9, var(--green-dark));
+  }
+  
+  .label {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--white);
+    padding: 0.8rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  footer {
+    margin-top: auto;
+    background-color: var(--green-dark);
+    color: var(--white);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  footer div {
+    flex: 1 1 200px;
+    margin: 1rem 0;
+  }
+  
+  footer p {
+    line-height: 1.6;
+  }
+  
