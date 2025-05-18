@@ -11,6 +11,7 @@
 a {
   text-decoration: none;
   color: inherit;
+  display: block;
 }
 
 a:hover .label,
@@ -44,6 +45,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   padding: 4rem 2rem;
+  width: 100%;
   max-width: 1200px;
   margin: auto;
 }
@@ -56,6 +58,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: transform 0.3s;
+  height: 100%;
 }
 
 .image {
@@ -109,8 +112,16 @@ footer p {
   font-size: 0.95rem;
 }
 
+@media (max-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 600px) {
   .gallery {
+    grid-template-columns: 1fr;
     padding: 2rem 1rem;
     gap: 1rem;
   }
@@ -135,3 +146,4 @@ footer p {
     text-align: center;
   }
 }
+
