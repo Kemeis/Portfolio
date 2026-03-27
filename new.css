@@ -14,15 +14,9 @@ a {
   display: block;
 }
 
-a:hover .label,
-a:hover .image::after {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: var(--white);
-}
-
 a:hover {
   transform: scale(1.01);
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 * {
@@ -64,7 +58,7 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
   height: 100%;
 }
 
@@ -76,29 +70,43 @@ body {
   overflow: hidden;
 }
 
+/* gradient overlay */
 .image::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: transparent;
-  transition: background-color 0.3s;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.2),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
+.card:hover .image::after {
+  opacity: 1;
+}
+
+/* tekst na zdjęciu */
 .hover-text {
   position: absolute;
   inset: 0;
   z-index: 2;
   display: flex;
   align-items: flex-end;
-  padding-bottom: 1rem;   
-  justify-content: flex-start; 
-  text-align: left;        
-  padding-left: 1.2rem; 
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: 1.2rem;
+  padding-right: 2rem; /* <-- to chciałeś */
+  padding-bottom: 1rem;
   color: var(--white);
   font-size: 0.95rem;
   line-height: 1.5;
   opacity: 0;
   transition: opacity 0.3s ease;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
 .card:hover .hover-text {
@@ -141,6 +149,8 @@ footer p {
   font-size: 0.95rem;
 }
 
+/* ===== RESPONSIVE ===== */
+
 @media (max-width: 900px) {
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
@@ -165,7 +175,9 @@ footer p {
 
   .hover-text {
     font-size: 0.85rem;
-    padding: 0.8rem;
+    padding-left: 1rem;
+    padding-right: 1.5rem;
+    padding-bottom: 0.8rem;
   }
 
   .label {
