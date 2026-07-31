@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0f14" />
+  <title>Ziemowit Kabaszyn - Technical drawings, visualisations and web projects</title>
+  <meta name="description" content="Technical drawings, SketchUp models, visualisations and lightweight web projects for building-related work." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ziemowit Kabaszyn - Technical drawings, visualisations and web projects" />
+  <meta property="og:description" content="Technical drawings, SketchUp models, visualisations and lightweight web projects for building-related work." />
+  <meta property="og:image" content="/og-image.png" />
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --bg-soft: #101720;
+      --surface: #141c26;
+      --surface-hover: #192331;
+      --text: #dbe5f1;
+      --muted: #8b9bb0;
+      --muted-2: #637085;
+      --accent: #75e0b3;
+      --accent-strong: #91f4ca;
+      --accent-soft: rgba(117, 224, 179, 0.14);
+      --blue-soft: rgba(105, 151, 255, 0.16);
+      --line: rgba(219, 229, 241, 0.11);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+      --radius: 22px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      position: relative;
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      z-index: -2;
+      pointer-events: none;
+      border-radius: 999px;
+      filter: blur(8px);
+      opacity: 0.95;
+      will-change: transform;
+    }
+
+    body::before {
+      width: 48rem;
+      height: 48rem;
+      left: -18rem;
+      top: -18rem;
+      background: radial-gradient(circle, rgba(117, 224, 179, 0.25), transparent 62%);
+      animation: ambient-one 15s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      width: 44rem;
+      height: 44rem;
+      right: -18rem;
+      top: 6rem;
+      background: radial-gradient(circle, rgba(105, 151, 255, 0.22), transparent 64%);
+      animation: ambient-two 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambient-one {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(7rem, 4rem, 0) scale(1.14); }
+    }
+
+    @keyframes ambient-two {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(-6rem, 6rem, 0) scale(1.12); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body::before,
+      body::after {
+        animation: none;
+      }
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .wrap {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      font-family: var(--mono);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      text-decoration: none;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: clamp(70px, 10vw, 116px) 0 clamp(48px, 7vw, 78px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      color: var(--accent-strong);
+      font-family: var(--mono);
+      font-size: clamp(0.98rem, 1.45vw, 1.1rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 28px rgba(117, 224, 179, 0.35);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 44px;
+      height: 2px;
+      background: var(--accent-strong);
+      box-shadow: 0 0 16px rgba(117, 224, 179, 0.42);
+    }
+
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(2.35rem, 6.2vw, 5.1rem);
+      line-height: 0.98;
+      letter-spacing: -0.075em;
+    }
+
+    .hero .accent,
+    h2 .accent {
+      color: var(--accent);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(117, 224, 179, 0.55);
+      background: rgba(117, 224, 179, 0.08);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #06100c;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background: #93ecc7;
+      color: #06100c;
+    }
+
+    .btn-small {
+      min-height: 40px;
+      padding: 0 16px;
+      font-size: 0.84rem;
+    }
+
+    section {
+      padding: clamp(54px, 8vw, 88px) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.9fr 1.35fr;
+      gap: 42px;
+      margin-bottom: 30px;
+    }
+
+    .kicker {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3.1rem);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+    }
+
+    .section-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.85fr) 1.35fr;
+      gap: clamp(28px, 6vw, 64px);
+      align-items: center;
+    }
+
+    .portrait-frame {
+      position: relative;
+      min-height: 520px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+        var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .portrait-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: var(--muted-2);
+      font-family: var(--mono);
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(117, 224, 179, 0.08), transparent 40%),
+        rgba(255, 255, 255, 0.025);
+    }
+
+    .about-copy {
+      display: grid;
+      gap: 18px;
+    }
+
+    .about-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 1.8vw, 1.16rem);
+    }
+
+    .about-copy strong {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      position: relative;
+      min-height: 240px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.022));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto -50px -60px auto;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      filter: blur(4px);
+    }
+
+    .card-number {
+      color: var(--muted-2);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+    }
+
+    h3 {
+      margin: 48px 0 12px;
+      font-size: 1.35rem;
+      letter-spacing: -0.035em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .visual-section {
+      position: relative;
+    }
+
+    .visual-section .compact-head {
+      margin-bottom: 22px;
+    }
+
+    .visual-section .section-head {
+      display: block;
+    }
+
+    .visual-carousel {
+      position: relative;
+    }
+
+    .visual-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: 4px 2px 8px;
+      margin: 0 58px;
+    }
+
+    .visual-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .visual-card {
+      flex: 0 0 min(360px, 82vw);
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    }
+
+    .visual-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(117, 224, 179, 0.45);
+      background: rgba(117, 224, 179, 0.055);
+    }
+
+    .visual-image {
+      position: relative;
+      min-height: 250px;
+      aspect-ratio: 4 / 3;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--surface);
+      overflow: hidden;
+    }
+
+    .visual-image::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11, 15, 20, 0.08), rgba(11, 15, 20, 0.78));
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+
+    .visual-hover {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      line-height: 1.55;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .visual-card:hover .visual-image::before,
+    .visual-card:hover .visual-hover {
+      opacity: 1;
+    }
+
+    .visual-card:hover .visual-hover {
+      transform: translateY(0);
+    }
+
+    .visual-label {
+      padding: 16px 18px 18px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      z-index: 5;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .carousel-btn:hover {
+      transform: translateY(calc(-50% - 2px));
+      border-color: rgba(117, 224, 179, 0.55);
+      background: rgba(117, 224, 179, 0.09);
+      color: var(--accent-strong);
+    }
+
+    .carousel-btn-left {
+      left: 0;
+    }
+
+    .carousel-btn-right {
+      right: 0;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: start;
+      padding: clamp(24px, 5vw, 42px);
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(117, 224, 179, 0.22);
+      background:
+        radial-gradient(circle at top right, rgba(117, 224, 179, 0.14), transparent 24rem),
+        rgba(20, 28, 38, 0.86);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-intro p {
+      margin: 16px 0 0;
+      color: var(--muted);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field label,
+    .consent span {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.84rem;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(11, 15, 20, 0.7);
+      color: var(--text);
+      outline: none;
+      padding: 14px 15px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .field textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: rgba(117, 224, 179, 0.55);
+      background: rgba(11, 15, 20, 0.9);
+    }
+
+    .consent {
+      display: flex;
+      align-items: start;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .consent input {
+      margin-top: 5px;
+      accent-color: var(--accent);
+    }
+
+    .form-note {
+      margin: 0;
+      color: var(--muted-2);
+      font-size: 0.82rem;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 28px 0 40px;
+      color: var(--muted-2);
+      font-family: var(--mono);
+      font-size: 0.86rem;
+      border-top: 1px solid var(--line);
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .visual-track {
+        margin: 0 54px;
+      }
+
+      .visual-card {
+        flex-basis: min(340px, 78vw);
+      }
+
+      .section-head,
+      .about-grid,
+      .grid-3,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+
+      .portrait-frame,
+      .portrait-frame img {
+        min-height: 420px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .visual-track {
+        margin: 0 48px;
+      }
+
+      .visual-card {
+        flex-basis: 88vw;
+      }
+
+      .carousel-btn {
+        width: 40px;
+        height: 40px;
+      }
+
+      .wrap {
+        width: min(100% - 28px, 1080px);
+      }
+
+      .nav {
+        align-items: flex-start;
+        gap: 18px;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 0.78rem;
+      }
+
+      h1 {
+        font-size: clamp(2.15rem, 15vw, 3.7rem);
+      }
+
+      .card {
+        min-height: auto;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top"><span>~</span> Ziemowit Kabaszyn</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#visualisations">Visualisations</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <main id="top">
+      <header class="hero">
+        <div class="eyebrow">Drafter, designer and web developer</div>
+        <h1>Technical drawings, 3D visualisations and web projects.</h1>
+        <div class="actions">
+          <a class="btn btn-primary" href="#contact">Start a conversation</a>
+          <a class="btn" href="#visualisations">See visualisations</a>
+        </div>
+      </header>
+
+      <section id="about">
+        <div class="about-grid">
+          <div class="portrait-frame">
+            <img src="./assets/profile.webp" alt="Portrait of Ziemowit Kabaszyn" onerror="this.hidden = true; this.nextElementSibling.hidden = false;" />
+            <div class="portrait-placeholder" hidden>
+              <br />./assets/profile.webp
+            </div>
+          </div>
+
+          <div class="about-copy">
+            <div class="kicker">/ about</div>
+            <p><strong>I create visual and technical materials for building-related projects.</strong> My work combines technical drawings made with AutoCAD, SketchUp modelling with V-Ray rendering, 3D visualisations and lightweight web projects.</p>
+            <p>I have an IT technical background, and I currently study Sustainable Building Engineering at Poznań University of Technology. Alongside that, I work with <strong>DD&B</strong>, where I get to use what I learn in a practical way.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="work">
+        <div class="section-head">
+          <div class="kicker">/ what I do</div>
+          <div>
+            <p class="section-copy">I keep my projects lightweight, understandable and easy to send, update or expand.</p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-number">01</div>
+            <h3>Technical drawings</h3>
+            <p>Clean CAD-based drawings and technical materials prepared for design, renovation and construction-related workflows.</p>
+          </article>
+          <article class="card">
+            <div class="card-number">02</div>
+            <h3>Visualisations</h3>
+            <p>Interior and project visualisations that help clients understand space, materials and the final direction of a concept.</p>
+          </article>
+          <article class="card">
+            <div class="card-number">03</div>
+            <h3>Web projects</h3>
+            <p>Simple project pages and practical web tools such as applications, webpages and presentations of 3D models.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="visualisations" class="visual-section">
+        <div class="section-head compact-head">
+          <div class="kicker">/ example 3D visualisations</div>
+        </div>
+
+        <div class="visual-carousel">
+          <button class="carousel-btn carousel-btn-left" type="button" aria-label="Previous visualisation">
+            ‹
+          </button>
+
+          <div class="visual-track" id="visualTrack">
+            <a class="visual-card" href="https://kemeis.github.io/16207_MP_2025_Full/?pano=down1" target="_blank" rel="noopener noreferrer">
+              <div class="visual-image" style="background-image: url('img4.JPG');">
+                <div class="visual-hover">
+                  16207_MP_2025<br>
+                  27/03/2026<br>
+                  3D model of bathroom and laundry room with Matterport scan and floor plans
+                </div>
+              </div>
+              <div class="visual-label">Bathrooms and laundry room</div>
+            </a>
+
+            <a class="visual-card" href="https://kemeis.github.io/3102_MP_2024/" target="_blank" rel="noopener noreferrer">
+              <div class="visual-image" style="background-image: url('img22.jpg');">
+                <div class="visual-hover">
+                  MP 3102<br>
+                  03/07/2025<br>
+                  Bathroom concept preview with visual material prepared for project presentation
+                </div>
+              </div>
+              <div class="visual-label">Big bathroom</div>
+            </a>
+
+            <a class="visual-card" href="https://kemeis.github.io/12601_MP_2025/" target="_blank" rel="noopener noreferrer">
+              <div class="visual-image" style="background-image: url('img3.jpg');">
+                <div class="visual-hover">
+                  Work in progress<br>
+                  Project preview<br>
+                  More visual material will be added soon
+                </div>
+              </div>
+              <div class="visual-label">Work in progress</div>
+            </a>
+          </div>
+
+          <button class="carousel-btn carousel-btn-right" type="button" aria-label="Next visualisation">
+            ›
+          </button>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="contact-layout">
+          <div class="contact-intro">
+            <div class="kicker">/ contact</div>
+            <h2>Talk first</h2>
+            <p>Send a message - no strings attached. I will read about your project or idea and tell you honestly whether I am able to help</p>
+            <div class="contact-links">
+              <p>Messages will be answered within 3 business days</p>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contact-form">
+            <div class="field">
+              <label for="contact-name">Name</label>
+              <input id="contact-name" name="name" type="text" placeholder="Your name" required />
+            </div>
+
+            <div class="field">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="email" type="email" placeholder="name@company.com" required />
+            </div>
+
+            <div class="field">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" placeholder="Tell me about the project..." required></textarea>
+            </div>
+
+            <label class="consent">
+              <input id="contact-consent" type="checkbox" required />
+              <span>I agree to send my contact details so Ziemowit can reply to this message.</span>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Send message</button>
+            <p class="form-note">Static version: the form uses mailto, so it does not store messages on the server.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Ziemowit Kabaszyn</div>
+      <div><a href="https://www.linkedin.com/in/ziemowit-kabaszyn-2584b528b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const visualTrack = document.getElementById('visualTrack');
+    const visualPrev = document.querySelector('.carousel-btn-left');
+    const visualNext = document.querySelector('.carousel-btn-right');
+
+    function moveVisuals(direction) {
+      if (!visualTrack) return;
+
+      const firstCard = visualTrack.querySelector('.visual-card');
+      const gap = 18;
+      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 320;
+
+      visualTrack.scrollBy({
+        left: direction * (cardWidth + gap),
+        behavior: 'smooth'
+      });
+    }
+
+    visualPrev?.addEventListener('click', () => moveVisuals(-1));
+    visualNext?.addEventListener('click', () => moveVisuals(1));
+
+    document.getElementById('contact-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+
+      const subject = encodeURIComponent('Project inquiry from ' + name);
+      const body = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n\n' +
+        'Message:\n' + message
+      );
+
+      window.location.href = 'mailto:ziemowit@dd-b.com?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>
