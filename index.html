@@ -46,7 +46,7 @@
       color: var(--text);
       font-family: var(--sans);
       line-height: 1.6;
-      overflow-x: auto;
+      overflow-x: hidden;
     }
 
     body::before,
@@ -623,7 +623,6 @@
         grid-template-columns: 1fr;
       }
 
-
       .portrait-frame,
       .portrait-frame img {
         min-height: 420px;
@@ -631,19 +630,6 @@
     }
 
     @media (max-width: 620px) {
-      .visual-track {
-        margin: 0 48px;
-      }
-
-      .visual-card {
-        flex-basis: 88vw;
-      }
-
-      .carousel-btn {
-        width: 40px;
-        height: 40px;
-      }
-
       .wrap {
         width: min(100% - 28px, 1080px);
       }
@@ -669,6 +655,18 @@
         min-height: auto;
       }
 
+      .visual-track {
+        margin: 0 48px;
+      }
+
+      .visual-card {
+        flex-basis: 88vw;
+      }
+
+      .carousel-btn {
+        width: 40px;
+        height: 40px;
+      }
     }
   </style>
 </head>
@@ -687,7 +685,7 @@
     <main id="top">
       <header class="hero">
         <div class="eyebrow">Drafter, designer and web developer</div>
-        <h1>Technical drawings, 3D visualisations and web projects.</h1>
+        <h1>Technical drawings, 3D visualisations and practical <span class="accent">web experiences</span>.</h1>
         <div class="actions">
           <a class="btn btn-primary" href="#contact">Start a conversation</a>
           <a class="btn" href="#visualisations">See visualisations</a>
@@ -698,13 +696,15 @@
         <div class="about-grid">
           <div class="portrait-frame">
             <img src="profile.webp" alt="Portrait of Ziemowit Kabaszyn" onerror="this.hidden = true; this.nextElementSibling.hidden = false;" />
-            
+            <div class="portrait-placeholder" hidden>
+              <br />profile.webp
+            </div>
           </div>
 
           <div class="about-copy">
             <div class="kicker">/ about</div>
-            <p><strong>I create visual and technical materials for building-related projects.</strong> My work combines technical drawings made with AutoCAD, SketchUp modelling with V-Ray rendering, 3D visualisations and lightweight web projects.</p>
-            <p>I have an IT technical background, and I currently study Sustainable Building Engineering at Poznań University of Technology. Alongside that, I work with <strong>DD&B</strong>, where I get to use what I learn in a practical way.</p>
+            <p><strong>I create visual and technical materials for building-related projects.</strong> My work combines technical drawings made with AutoCAD, SketchUp modelling with VRay rendering, 3D visualisations and lightweight web projects.</p>
+            <p>I have an IT technical background, but currently I study Sustainable Building Engineering on Poznań University of Technology, aside from that I work with <strong>DD&B</strong>, where I get to use what I learn in a practical way.</p>
           </div>
         </div>
       </section>
@@ -731,68 +731,68 @@
           <article class="card">
             <div class="card-number">03</div>
             <h3>Web projects</h3>
-            <p>Simple project pages and practical web tools such as applications, webpages and presentations of 3D models.</p>
+            <p>Simple project pages and practical web tools such as applications and web pages and of course  presentation of 3D models.</p>
           </article>
         </div>
       </section>
 
       <section id="visualisations" class="visual-section">
-        <div class="section-head compact-head">
-          <div class="kicker">/ example 3D visualisations</div>
-        </div>
+  <div class="section-head compact-head">
+    <div class="kicker">/ example 3D visualisations</div>
+  </div>
 
-        <div class="visual-carousel">
-          <button class="carousel-btn carousel-btn-left" type="button" aria-label="Previous visualisation">
-            ‹
-          </button>
+  <div class="visual-carousel">
+    <button class="carousel-btn carousel-btn-left" type="button" aria-label="Previous visualisation">
+      ‹
+    </button>
 
-          <div class="visual-track" id="visualTrack">
-            <a class="visual-card" href="https://kemeis.github.io/16207_MP_2025_Full/?pano=down1" target="_blank" rel="noopener noreferrer">
-              <div class="visual-image" style="background-image: url('img4.JPG');">
-                <div class="visual-hover">
-                  16207_MP_2025<br>
-                  27/03/2026<br>
-                  3D model of bathroom and laundry room with Matterport scan and floor plans
-                </div>
-              </div>
-              <div class="visual-label">Bathrooms and laundry room</div>
-            </a>
-
-            <a class="visual-card" href="https://kemeis.github.io/3102_MP_2024/" target="_blank" rel="noopener noreferrer">
-              <div class="visual-image" style="background-image: url('img22.jpg');">
-                <div class="visual-hover">
-                  MP 3102<br>
-                  03/07/2025<br>
-                  Bathroom concept preview with visual material prepared for project presentation
-                </div>
-              </div>
-              <div class="visual-label">Big bathroom</div>
-            </a>
-
-            <a class="visual-card" href="https://kemeis.github.io/12601_MP_2025/" target="_blank" rel="noopener noreferrer">
-              <div class="visual-image" style="background-image: url('img3.jpg');">
-                <div class="visual-hover">
-                  Work in progress<br>
-                  Project preview<br>
-                  More visual material will be added soon
-                </div>
-              </div>
-              <div class="visual-label">Work in progress</div>
-            </a>
+    <div class="visual-track" id="visualTrack">
+      <a class="visual-card" href="https://kemeis.github.io/16207_MP_2025_Full/?pano=down1" target="_blank" rel="noopener noreferrer">
+        <div class="visual-image" style="background-image: url('img4.JPG');">
+          <div class="visual-hover">
+            16207_MP_2025<br>
+            27/03/2026<br>
+            3D model of bathroom and laundry room with Matterport scan and floor plans<br>
           </div>
-
-          <button class="carousel-btn carousel-btn-right" type="button" aria-label="Next visualisation">
-            ›
-          </button>
         </div>
-      </section>
+        <div class="visual-label">Bathrooms and laundry room</div>
+      </a>
+
+      <a class="visual-card" href="https://kemeis.github.io/Example/" target="_blank" rel="noopener noreferrer">
+        <div class="visual-image" style="background-image: url('img22.jpg');">
+          <div class="visual-hover">
+            MP 3102<br>
+            3/07/2025<br>
+          </div>
+        </div>
+        <div class="visual-label">Big bathroom</div>
+      </a>
+
+      <a class="visual-card" href="https://kemeis.github.io/3102_MP_2024/" target="_blank" rel="noopener noreferrer">
+        <div class="visual-image" style="background-image: url('img3.jpg');">
+          <div class="visual-hover">
+            Work in progress<br>
+            <br>
+            <br>
+            
+          </div>
+        </div>
+        <div class="visual-label">Work in progress</div>
+      </a>
+    </div>
+
+    <button class="carousel-btn carousel-btn-right" type="button" aria-label="Next visualisation">
+      ›
+    </button>
+  </div>
+</section>
 
       <section id="contact">
         <div class="contact-layout">
           <div class="contact-intro">
             <div class="kicker">/ contact</div>
             <h2>Talk first</h2>
-            <p>Send a message - no strings attached. I will read about your project or idea and tell you honestly whether I am able to help</p>
+            <p>Send a message - no strings attached. I will read about your project or idea and tell you honestly whether I'm able to help</p>
             <div class="contact-links">
               <p>Messages will be answered within 3 business days</p>
             </div>
@@ -816,7 +816,7 @@
 
             <label class="consent">
               <input id="contact-consent" type="checkbox" required />
-              <span>I agree to send my contact details so Ziemowit can reply to this message.</span>
+              <span>I consent to the processing of my personal data (name and email address) for the purpose of responding to my message.</span>
             </label>
 
             <button class="btn btn-primary" type="submit">Send message</button>
